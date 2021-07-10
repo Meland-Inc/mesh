@@ -1,0 +1,13 @@
+serve: 
+  port: 5000
+
+sources:
+  - name: UserService
+    handler:
+      graphql:
+        endpoint: ${USER_SERVICE_URL}/graphql
+  - name: CourseService
+    handler:
+      graphql:
+        endpoint: ${COURSE_SERVICE_URL}/graphql
+  
