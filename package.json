@@ -1,6 +1,6 @@
 {
   "name": "@ICodeWorld-Inc/mesh",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "service mesh",
   "main": "dist/index.js",
   "author": "Albert",
