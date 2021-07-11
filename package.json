@@ -1,8 +1,10 @@
 {
   "name": "@ICodeWorld-Inc/mesh",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "service mesh",
-  "main": "dist",
+  "main": "dist/cjs",
+  "module": "dist/esm",
+  "type": "module",
   "author": "Albert",
   "license": "MIT",
   "private": false,
@@ -37,7 +39,11 @@
     "sdk": "graphql-mesh generate-sdk --output ./src/generated/sdk.ts",
     "make:config": "ts-node ./config.generator.ts && prettier --write \"src/config.ts\"",
     "format": "prettier --write \"src/**/*.ts\" \"test.ts\"",
-    "prepublish": "tsc",
-    "test": "ts-node ./test.ts"
+    "build": "yarn build:cjs && yarn build:esm && yarn build:es2015",
+    "build:cjs": "tsc --module commonjs --target es5 --outDir dist/cjs",
+    "build:esm": "tsc --module es2015 --target es5 --outDir dist/esm",
+    "build:es2015": "tsc --module es2015 --target es2015 --outDir dist/es2015",
+    "prepublish": "yarn build",
+    "test": "node --loader ts-node/esm --experimental-modules --es-module-specifier-resolution=node ./test.ts"
   }
 }
