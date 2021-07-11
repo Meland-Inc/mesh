@@ -1,8 +1,8 @@
 {
   "name": "@ICodeWorld-Inc/mesh",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "service mesh",
-  "main": "dist/index.js",
+  "main": "dist",
   "author": "Albert",
   "license": "MIT",
   "private": false,
