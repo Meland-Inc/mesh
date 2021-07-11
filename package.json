@@ -1,13 +1,14 @@
 {
   "name": "@ICodeWorld-Inc/mesh",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "service mesh",
   "main": "dist/index.js",
   "author": "Albert",
   "license": "MIT",
   "private": false,
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
   },
   "repository": {
     "type": "github",
