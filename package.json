@@ -1,6 +1,6 @@
 {
   "name": "@ICodeWorld-Inc/mesh",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "service mesh",
   "main": "dist",
   "author": "Albert",
@@ -16,13 +16,16 @@
   },
   "dependencies": {
     "@graphql-mesh/graphql": "^0.17.10",
+    "@graphql-mesh/merger-bare": "^0.9.10",
     "@graphql-mesh/runtime": "^0.17.0",
     "@types/lodash-es": "^4.17.4",
     "graphql": "^15.5.1",
+    "graphql-subscriptions": "^1.2.1",
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
     "@graphql-mesh/cli": "^0.30.2",
+    "@graphql-mesh/config": "^0.17.0",
     "@graphql-mesh/graphql": "^0.17.10",
     "dotenv": "^10.0.0",
     "prettier": "^2.3.2",
