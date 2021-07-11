@@ -1,6 +1,6 @@
 {
   "name": "@ICodeWorld-Inc/mesh",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "service mesh",
   "main": "dist",
   "author": "Albert",
@@ -24,6 +24,8 @@
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
+    "@graphql-mesh/cache-inmemory-lru": "^0.5.5",
+    "@graphql-mesh/cache-localforage": "^0.5.5",
     "@graphql-mesh/cli": "^0.30.2",
     "@graphql-mesh/config": "^0.17.0",
     "@graphql-mesh/graphql": "^0.17.10",
