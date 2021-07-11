@@ -601,7 +601,7 @@
     parse-filepath "^1.0.2"
     tslib "~2.3.0"
 
-"@graphql-mesh/cache-inmemory-lru@0.5.5":
+"@graphql-mesh/cache-inmemory-lru@0.5.5", "@graphql-mesh/cache-inmemory-lru@^0.5.5":
   version "0.5.5"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/cache-inmemory-lru/-/cache-inmemory-lru-0.5.5.tgz#c1060b4ffa77ac2deaeab4a2ca7e0e04f9b86892"
   integrity sha512-2y3AA0rFo2TPhT6lZFPbTGxZewhDBLB+HGJx6OQ6027sLj/CtNtl4T0rbICZvkHviVoeVd19vBCojUZS3HRsRg==
@@ -609,6 +609,14 @@
     "@graphql-mesh/types" "0.42.0"
     "@types/lru-cache" "5.1.0"
     lru-cache "6.0.0"
+
+"@graphql-mesh/cache-localforage@^0.5.5":
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/cache-localforage/-/cache-localforage-0.5.5.tgz#9d81e5e1b9d81a3439f03c7735a36ce04a8af1a2"
+  integrity sha512-/OKN30XwveHXo+nQBTGm5cf/KBsGJhJEEjaaMz67V4TEPv49PZZuk1btKa8U2fHaOEtzzuoItWTI8O73FkKAYA==
+  dependencies:
+    "@graphql-mesh/types" "0.42.0"
+    localforage "1.9.0"
 
 "@graphql-mesh/cli@^0.30.2":
   version "0.30.2"
@@ -647,7 +655,7 @@
     ws "7.4.6"
     yargs "17.0.1"
 
-"@graphql-mesh/config@0.17.0":
+"@graphql-mesh/config@0.17.0", "@graphql-mesh/config@^0.17.0":
   version "0.17.0"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/config/-/config-0.17.0.tgz#a7713bc4b95b17a80171e7786a3947bd29d6d452"
   integrity sha512-YeaBZKMrL8njfUt/mYYcS7qntWS9M/PB/w8s59mD3yjVYEmUuWQWlEgZKDsb34veBfNC07l4DFhzufFpO9kr0Q==
@@ -678,6 +686,18 @@
     "@graphql-tools/url-loader" "6.10.1"
     "@graphql-tools/wrap" "7.0.8"
 
+"@graphql-mesh/merger-bare@^0.9.10":
+  version "0.9.10"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/merger-bare/-/merger-bare-0.9.10.tgz#2a193b9b21b479b8de4fa5eeb01d37f320a3c026"
+  integrity sha512-Tb+J8gce/jJm+E3jgLDni3vT6AB+vXcVrw8YKy0hI1Oql9Jf/R+GtNogQ9UJrTi1vW7E/GCIjt3TH2RClqLinw==
+  dependencies:
+    "@graphql-mesh/types" "0.42.0"
+    "@graphql-mesh/utils" "0.12.0"
+    "@graphql-tools/merge" "6.2.14"
+    "@graphql-tools/utils" "7.10.0"
+    "@graphql-tools/wrap" "7.0.8"
+    fetchache "0.1.1"
+
 "@graphql-mesh/merger-stitching@0.9.8":
   version "0.9.8"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/merger-stitching/-/merger-stitching-0.9.8.tgz#35d0fa22fb2e94b902481f6b790a8e44ade586d9"
@@ -691,7 +711,7 @@
     "@graphql-tools/wrap" "7.0.8"
     fetchache "0.1.1"
 
-"@graphql-mesh/runtime@0.17.0":
+"@graphql-mesh/runtime@0.17.0", "@graphql-mesh/runtime@^0.17.0":
   version "0.17.0"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/runtime/-/runtime-0.17.0.tgz#a2e33e30ace3ef44795aac83249b17366e7f44c0"
   integrity sha512-Flgf5yzxlfzKwHeB2pJfZL+L8XmWi5IoAhMt71yfYtlv1nN0JbS9O2geUDM7pFHpoIHEbUdgQlsv25T1M11Ejw==
@@ -2028,7 +2048,7 @@ graphql-jit@0.5.1:
     lodash.merge "4.6.2"
     lodash.mergewith "4.6.2"
 
-graphql-subscriptions@1.2.1:
+graphql-subscriptions@1.2.1, graphql-subscriptions@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/graphql-subscriptions/-/graphql-subscriptions-1.2.1.tgz#2142b2d729661ddf967b7388f7cf1dd4cf2e061d"
   integrity sha512-95yD/tKi24q8xYa7Q9rhQN16AYj5wPbrb8tmHGM3WRc9EBmWrG/0kkMl+tQG8wcEuE9ibR4zyOM31p5Sdr2v4g==
@@ -2157,6 +2177,11 @@ ignore@^5.1.4:
   version "5.1.8"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.1.8.tgz#f150a8b50a34289b33e22f5889abd4d8016f0e57"
   integrity sha512-BMpfD7PpiETpBl/A6S498BaIJ6Y/ABT93ETbby2fP00v4EbvPBXWEoaR1UBPKs3iR53pJY7EtZk5KACI57i1Uw==
+
+immediate@~3.0.5:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/immediate/-/immediate-3.0.6.tgz#9db1dbd0faf8de6fbe0f5dd5e56bb606280de69b"
+  integrity sha1-nbHb0Pr43m++D13V5Wu2BigN5ps=
 
 immutable@~3.7.6:
   version "3.7.6"
@@ -2442,10 +2467,24 @@ kuler@^2.0.0:
   resolved "https://registry.yarnpkg.com/kuler/-/kuler-2.0.0.tgz#e2c570a3800388fb44407e851531c1d670b061b3"
   integrity sha512-Xq9nH7KlWZmXAtodXDDRE7vs6DU1gTU8zYDHDiWLSip45Egwq3plLHzPn27NgvzL2r1LMPC1vdqh98sQxtqj4A==
 
+lie@3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/lie/-/lie-3.1.1.tgz#9a436b2cc7746ca59de7a41fa469b3efb76bd87e"
+  integrity sha1-mkNrLMd0bKWd56QfpGmz77dr2H4=
+  dependencies:
+    immediate "~3.0.5"
+
 lines-and-columns@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
+
+localforage@1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/localforage/-/localforage-1.9.0.tgz#f3e4d32a8300b362b4634cc4e066d9d00d2f09d1"
+  integrity sha512-rR1oyNrKulpe+VM9cYmcFn6tsHuokyVHFaCM3+osEmxaHTbEk8oQu6eGDfS6DQLWi/N67XRmB8ECG37OES368g==
+  dependencies:
+    lie "3.1.1"
 
 locate-path@^5.0.0:
   version "5.0.0"
