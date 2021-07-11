@@ -53,7 +53,6 @@ async function test() {
 
 test();
 
-
 export default test;
 ```
 # scripts
