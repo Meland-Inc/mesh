@@ -1,12 +1,27 @@
-import { getSdk } from './src/generated/sdk';
-import { parseConfig } from '@graphql-mesh/config';
-import { getMesh } from '@graphql-mesh/runtime';
-import { config } from './src/config';
+import { makeSdk } from "./src/config";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 async function test() {
-    const meshConfig = await parseConfig(config);
-    const { sdkRequester } = await getMesh(meshConfig);
-    const sdk = getSdk(sdkRequester);
+    const sdk = await makeSdk([
+        {
+            name: "UserService",
+            handler: {
+                graphql: {
+                    endpoint: `${process.env.USER_SERVICE_URL}/graphql`,
+                },
+            },
+        },
+        {
+            name: "CourseService",
+            handler: {
+                graphql: {
+                    endpoint: `${process.env.COURSE_SERVICE_URL}/graphql`
+                }
+            }
+        }
+    ]);
     const { createUser: user } = await sdk.createUserMutation({
         createUserInput: {
             schoolId: 1,
@@ -17,8 +32,8 @@ async function test() {
             email: "",
             mobile: "",
             avatar: "",
-            password: "Test"
-        }
+            password: "Test",
+        },
     });
 
     console.log(user.username);

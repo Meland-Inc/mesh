@@ -32,11 +32,60 @@ const promiseOpen = (filePath: string, mode: filemode = 'w'): Promise<number> =>
 };
 
 findAndParseConfig().then(config => {
-    const configJsonStr = JSON.stringify(config.config);
-    return configJsonStr;
-}).then(configJson => {
+    return config.config;
+}).then(config => {
     return promiseOpen(configPath).then(fd => {
-        const code = `export const config = ${configJson}`;
+        const services = config.sources.map(s => s.name);
+        const configJson = JSON.stringify(config);
+        const codeTypeSourcesConfig = `
+        export type sourcesConfig = ${services.map(s => {
+            return `{
+                name: "${s}";
+                handler: {
+                    graphql: {
+                        endpoint: string;
+                    };
+                };
+            }`;
+        }).join('|')}
+        `;
+        const code = `
+import { parseConfig } from '@graphql-mesh/config';
+import { getMesh } from '@graphql-mesh/runtime';
+import { YamlConfig } from "@graphql-mesh/types";
+import { getSdk, Sdk } from './generated/sdk';
+import * as _ from "lodash";
+        
+export const defaultConfig: YamlConfig.Config = ${configJson}
+${codeTypeSourcesConfig}
+
+/// 允许覆盖默认配置构建 Sdk
+export const makeSdk = async (
+    overrides: sourcesConfig[] = []
+): Promise<Sdk> => {
+    const config = _.cloneDeep(defaultConfig);
+    const sources = config.sources;
+
+    for (const i in sources) {
+        const source = sources[i];
+
+        const overrideSource = _.find<sourcesConfig>(overrides, [
+            "name",
+            source.name,
+        ]);
+
+        if (overrideSource != undefined) {
+            sources[i] = _.assign(source, overrideSource);
+        }
+    }
+
+    config.sources = sources;
+
+    const processConfig = await parseConfig(config);
+    const { sdkRequester } = await getMesh(processConfig);
+    return getSdk(sdkRequester);
+};
+        `;
         const buffer = Buffer.from(code);
         write(fd, buffer, 0, buffer.length, 0, function (error) {
             if (error) {
