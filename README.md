@@ -7,8 +7,55 @@
 - nodejs@14.17.0
 
 # 使用示例
-https://github.com/ICodeWorld-Inc/mesh/blob/1f3658aadcebf6e0ab0cc3ccd96a75c897c01a98/test.ts#L1-L48
+```typescript
+import { makeSdk } from "./src/config";
+import * as dotenv from "dotenv";
+import InMemoryLRUCache from '@graphql-mesh/cache-inmemory-lru';
 
+dotenv.config();
+
+async function test() {
+    // @ts-ignore
+    const sdk = await makeSdk({ cache: new InMemoryLRUCache() }, [
+        {
+            name: "UserService",
+            handler: {
+                graphql: {
+                    endpoint: `${process.env.USER_SERVICE_URL}/graphql`,
+                },
+            },
+        },
+        {
+            name: "CourseService",
+            handler: {
+                graphql: {
+                    endpoint: `${process.env.COURSE_SERVICE_URL}/graphql`,
+                },
+            },
+        },
+    ]);
+    const { createUser: user } = await sdk.createUserMutation({
+        createUserInput: {
+            schoolId: 1,
+            username: `Test${Math.floor(Math.random() * 1000)}`,
+            usertype: 4,
+            nickname: "Test",
+            realname: "Test",
+            email: "",
+            mobile: "",
+            avatar: "",
+            password: "Test",
+        },
+    });
+
+    console.log(user.username);
+}
+
+test();
+
+
+export default test;
+```
 # scripts
 
 ### 生成 sdk
@@ -21,4 +68,10 @@ yarn sdk
 
 ```bash
 yarn make:config
+```
+
+### 发布npm
+
+```bash
+yarn publish
 ```

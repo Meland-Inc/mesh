@@ -1,6 +1,5 @@
 import { makeSdk } from "./src/config";
 import * as dotenv from "dotenv";
-import LocalforageCache from '@graphql-mesh/cache-localforage';
 import InMemoryLRUCache from '@graphql-mesh/cache-inmemory-lru';
 
 dotenv.config();
