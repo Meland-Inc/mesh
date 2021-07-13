@@ -6,6 +6,12 @@
 
 - nodejs@14.17.0
 
+# 安装
+
+```yarn
+yarn add @ICodeWorld-Inc/mesh
+```
+
 # 使用示例
 ```typescript
 import { makeSdk } from "./src/config";

@@ -2,7 +2,10 @@ import { makeSdk } from "./src/config";
 import * as dotenv from "dotenv";
 import InMemoryLRUCache from '@graphql-mesh/cache-inmemory-lru';
 
-dotenv.config();
+/// 如果没有环境变量则直接载入 .env
+if (!process.env.USER_SERVICE_URL) {
+    dotenv.config();
+}
 
 async function test() {
     // @ts-ignore
@@ -17,6 +20,14 @@ async function test() {
         },
         {
             name: "CourseService",
+            handler: {
+                graphql: {
+                    endpoint: `${process.env.COURSE_SERVICE_URL}/graphql`,
+                },
+            },
+        },
+        {
+            name: "ResourceBoxService",
             handler: {
                 graphql: {
                     endpoint: `${process.env.COURSE_SERVICE_URL}/graphql`,

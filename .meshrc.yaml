@@ -1,5 +1,10 @@
 serve: 
   port: 5000
+  cors: 
+    origin: "http://localhost:3000"
+    allowedHeaders:
+      - "Content-Type"
+    credentials: true
 
 sources:
   - name: UserService
@@ -10,4 +15,7 @@ sources:
     handler:
       graphql:
         endpoint: ${COURSE_SERVICE_URL}/graphql
-  
+  - name: ResourceBoxService
+    handler:
+      graphql:
+        endpoint: ${RESOURCE_BOX_SERVICE_URL}/graphql

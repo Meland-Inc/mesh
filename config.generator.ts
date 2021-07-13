@@ -1,6 +1,12 @@
 import { findAndParseConfig } from '@graphql-mesh/config';
 import { write, open } from 'fs';
 import * as path from 'path';
+import * as dotenv from "dotenv";
+
+/// 如果没有环境变量则直接载入 .env
+if (!process.env.USER_SERVICE_URL) {
+    dotenv.config();
+}
 
 const configPath = path.join(process.cwd(), "src", "config.ts");
 
