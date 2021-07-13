@@ -1,0 +1,48 @@
+# global:
+#   nodeEnv: 'development' | 'prod'
+global:
+  nodeEnv: 'development'
+
+
+replicaCount: 1
+
+image:
+  repository: icw-registry.cn-shenzhen.cr.aliyuncs.com/icw/mesh
+  pullPolicy: IfNotPresent
+  tag: ""
+
+imagePullSecrets:
+  - name : icw-dockerhubkey
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+
+service:
+  type: ClusterIP
+  port: 3000
+
+# 应用服务暴露的端口
+containerPort: 3000
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  hosts:
+    - host: "local.a.user-service.com"
+
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 250Mi
+  limits:
+    cpu: 100m
+    memory: 500Mi  

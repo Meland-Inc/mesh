@@ -1,0 +1,21 @@
+# 这个.yaml模板文件只是用于方便自己调试单个服务；
+# 服务部署起来运行的话，是根据最外层的父级项目来串联编排启动
+
+global: 
+  nodeEnv: 'development'
+  
+ingress:
+  enabled: true
+  annotations: 
+    kubernetes.io/ingress.class: nginx
+  hosts:
+    - host: "local.a.mesh
+    - host: "local.b.mesh
+
+resources: 
+  limits:
+    cpu: 100m
+    memory: 250Mi
+  requests:
+    cpu: 100m
+    memory: 250Mi
