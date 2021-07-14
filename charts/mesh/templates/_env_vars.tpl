@@ -1,26 +1,10 @@
-{{- define "mesh
-{{- printf "%s-mysql" .Release.Name | trunc 63 | trimSuffix "-" -}}
-{{- end -}}
-
-# return MySQL config
-{{- define "mysql.configs" -}}
-{{- if .Values.mysql.localMysqlEnabled }}
-- name: DATABASE_HOST
-  value: {{ (include "mesh }}  
-{{- else }}
-- name: DATABASE_HOST
-  value: {{ .Values.mysql.auth.host }}  
-{{- end }}
-- name: DATABASE_TYPE
-  value: "mysql"
-- name: DATABASE_PORT
-  value: {{ .Values.mysql.service.port | quote }}  
-- name: DATABASE_USERNAME
-  value: {{ .Values.mysql.auth.username }}  
-- name: DATABASE_PASSWORD
-  value: {{ .Values.mysql.auth.password }}  
-- name: DATABASE_DATABASE
-  value: {{ .Values.mysql.auth.database }}  
+{{- define "service-url-configs" -}}
+- name: USER_SERVICE_URL
+  value: {{ default "http://127.0.0.1:3003" .Values.serviceUrls.userService }}
+- name: COURSE_SERVICE_URL
+  value: {{ default "http://127.0.0.1:3002" .Values.serviceUrls.courseService }}
+- name: RESOURCE_BOX_SERVICE_URL
+  value: {{ default "http://127.0.0.1:3001" .Values.serviceUrls.resouceBox }}
 {{- end -}}
 
 

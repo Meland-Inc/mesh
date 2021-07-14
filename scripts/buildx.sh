@@ -41,9 +41,9 @@ image_name=$(get_docker_tag ${PROJECT_NAME} ${version})
 
 
 # build 服务镜像
-# docker build ${PROJECT_ROOT} -f ${PROJECT_ROOT}/docker/Dockerfile -t ${image_name}
-# docker push ${image_name}
+docker build --no-cache ${PROJECT_ROOT} -f ${PROJECT_ROOT}/docker/Dockerfile -t ${image_name}
+docker push ${image_name}
 
 # push chart
-helm repo add --force-update  ${PROJECT_NAME} acr://icw-chart.cn-shenzhen.cr.aliyuncs.com/icw/mesh --username tengyu067 --password zJEqgDq7c2JfG2yA
+helm repo add --force-update ${PROJECT_NAME} acr://icw-chart.cn-shenzhen.cr.aliyuncs.com/icw/node-service --username tengyu067 --password zJEqgDq7c2JfG2yA
 helm push -f $PROJECT_ROOT/charts/mesh mesh

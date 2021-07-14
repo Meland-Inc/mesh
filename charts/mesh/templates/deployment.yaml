@@ -1,31 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "mesh
+  name: {{ include "mesh.fullname" . }}
   labels:
-    {{- include "mesh 4 }}
+    {{- include "mesh.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "mesh nindent 6 }}
+      {{- include "mesh.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "mesh nindent 8 }}
+        {{- include "mesh.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "mesh . }}
+      serviceAccountName: {{ include "mesh.serviceAccountName" . }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
           {{ include "node-env" . | nindent 10 }}
-          {{ include "mysql.configs" . | nindent 10 }}
+          {{ include "service-url-configs" . | nindent 10 }}
           ports:
             - name: http
               containerPort: {{ .Values.containerPort }}

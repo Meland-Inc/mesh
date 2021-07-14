@@ -26,10 +26,10 @@ serviceAccount:
 
 service:
   type: ClusterIP
-  port: 3000
+  port: 5000
 
 # 应用服务暴露的端口
-containerPort: 3000
+containerPort: 5000
 
 ingress:
   enabled: true
@@ -38,6 +38,11 @@ ingress:
   hosts:
     - host: "local.a.user-service.com"
 
+
+serviceUrls:
+  userService:
+  courseService:
+  resouceBox:
 
 resources:
   requests:
